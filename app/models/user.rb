@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   validate :presence_of_pay_days
 
   has_many :pay_periods
+  has_many :deductions
 
   private
 

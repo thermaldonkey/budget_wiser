@@ -1,0 +1,27 @@
+<h1>Listing deductions</h1>
+
+<table>
+  <tr>
+    <th>Value</th>
+    <th>Monthly frequency</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @deductions.each do |deduction| %>
+  <tr>
+    <td><%= deduction.value %></td>
+    <td><%= deduction.monthly_frequency %></td>
+    <td><%= deduction.user %></td>
+    <td><%= link_to 'Show', deduction %></td>
+    <td><%= link_to 'Edit', edit_deduction_path(deduction) %></td>
+    <td><%= link_to 'Destroy', deduction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Deduction', new_deduction_path %>

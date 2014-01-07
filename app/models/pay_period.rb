@@ -15,4 +15,14 @@ class PayPeriod < ActiveRecord::Base
   def balance
     (net_income * user.allowance) - (withdrawals.map(&:value).reduce(:+))
   end
+
+  def calculate_net_income
+    self.net_income = gross_income - (user.deductions.map(&:pay_period_value).reduce(:+))
+    self.save
+  end
+
+  def calculate_savings
+    self.savings = net_income - balance
+    self.save
+  end
 end

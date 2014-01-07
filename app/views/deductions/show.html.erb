@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Value:</b>
+  <%= @deduction.value %>
+</p>
+
+<p>
+  <b>Monthly frequency:</b>
+  <%= @deduction.monthly_frequency %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @deduction.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_deduction_path(@deduction) %> |
+<%= link_to 'Back', deductions_path %>
