@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Gross income:</b>
+  <%= @pay_period.gross_income %>
+</p>
+
+<p>
+  <b>Net income:</b>
+  <%= @pay_period.net_income %>
+</p>
+
+<p>
+  <b>Savings:</b>
+  <%= @pay_period.savings %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @pay_period.end_date %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @pay_period.start_date %>
+</p>
+
+<p>
+  <b>Belongs to:</b>
+  <%= @pay_period.belongs_to %>
+</p>
+
+
+<%= link_to 'Edit', edit_pay_period_path(@pay_period) %> |
+<%= link_to 'Back', pay_periods_path %>

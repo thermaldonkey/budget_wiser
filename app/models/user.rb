@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
   validate :presence_of_pay_days
 
+  has_many :pay_periods
+
   private
 
     def presence_of_pay_days

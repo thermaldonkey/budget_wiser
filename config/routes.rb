@@ -1,4 +1,7 @@
 BetaBudget::Application.routes.draw do
+  resources :pay_periods
+
+
   devise_for :users
 
   resources :users
