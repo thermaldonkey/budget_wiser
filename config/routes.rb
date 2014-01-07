@@ -1,4 +1,7 @@
 BetaBudget::Application.routes.draw do
+  resources :notifications
+
+
   resources :deductions
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107032150) do
+ActiveRecord::Schema.define(:version => 20140107040541) do
 
   create_table "deductions", :force => true do |t|
     t.float    "value"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20140107032150) do
   end
 
   add_index "deductions", ["user_id"], :name => "index_deductions_on_user_id"
+
+  create_table "notifications", :force => true do |t|
+    t.string   "body"
+    t.boolean  "read"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "pay_periods", :force => true do |t|
     t.float    "gross_income", :null => false
