@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Pay days:</b>
+  <%= @user.pay_days %>
+</p>
+
+<p>
+  <b>Allowance:</b>
+  <%= @user.allowance %>
+</p>
+
+<p>
+  <b>Pending payment:</b>
+  <%= @user.pending_payment %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
