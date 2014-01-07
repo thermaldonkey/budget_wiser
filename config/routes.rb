@@ -1,4 +1,7 @@
 BetaBudget::Application.routes.draw do
+  resources :withdrawals
+
+
   resources :pay_periods
 
 

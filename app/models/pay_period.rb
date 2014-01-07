@@ -10,8 +10,9 @@ class PayPeriod < ActiveRecord::Base
   validates_presence_of :end_date
 
   belongs_to :user
-#  has_many :withdrawals
+  has_many :withdrawals
 
-#  def balance
-#  end
+  def balance
+    (net_income * user.allowance) - (withdrawals.map(&:value).reduce(:+))
+  end
 end

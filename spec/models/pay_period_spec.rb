@@ -25,10 +25,22 @@ describe PayPeriod do
   it { should validate_presence_of :end_date }
 
   it { should belong_to :user }
-#  it { should have_many :withdrawals }
+  it { should have_many :withdrawals }
 
-#  describe "#balance" do
-#    it "should return the value of all income minus expenses" do
-#    end
-#  end
+  describe "#balance" do
+    let(:period) { create(:pay_period, net_income: 200) }
+
+    before do
+      period.user.allowance = 0.75
+      period.user.save
+      period.withdrawals << create(:withdrawal, value: 15, pay_period_id: period.id)
+      period.withdrawals << create(:withdrawal, value: 25, pay_period_id: period.id)
+    end
+
+    subject { period.balance }
+
+    it "should return the value of all income minus expenses" do
+      subject.should eq 110
+    end
+  end
 end
