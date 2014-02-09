@@ -25,7 +25,7 @@ describe User do
 
   it { should have_many :pay_periods }
   it { should have_many :deductions }
-#  it { should have_many :notifications }
+  it { should have_many :notifications }
 
   it "should require unique email" do
     subject.save

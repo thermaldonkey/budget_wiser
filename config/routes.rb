@@ -11,9 +11,9 @@ BetaBudget::Application.routes.draw do
   resources :pay_periods
 
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
 
-  resources :users
+  resources :users, except: [:index]
 
 
   # The priority is based upon order of creation:

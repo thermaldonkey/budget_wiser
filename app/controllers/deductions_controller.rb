@@ -2,7 +2,7 @@ class DeductionsController < ApplicationController
   # GET /deductions
   # GET /deductions.json
   def index
-    @deductions = Deduction.all
+    @deductions = current_user.deductions
 
     respond_to do |format|
       format.html # index.html.erb

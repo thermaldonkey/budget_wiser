@@ -25,15 +25,14 @@ describe DeductionsController do
   # adjust the attributes here as well.
   let(:valid_attributes) { attributes_for(:deduction) }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # DeductionsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:user) { create(:user) }
+
+  before { sign_in user }
 
   describe "GET index" do
     it "assigns all deductions as @deductions" do
-      deduction = Deduction.create! valid_attributes
-      get :index, {}, valid_session
+      deduction = create(:deduction, user: user)
+      get :index, {}
       assigns(:deductions).should eq([deduction])
     end
   end
@@ -41,14 +40,14 @@ describe DeductionsController do
   describe "GET show" do
     it "assigns the requested deduction as @deduction" do
       deduction = Deduction.create! valid_attributes
-      get :show, {:id => deduction.to_param}, valid_session
+      get :show, {:id => deduction.to_param}
       assigns(:deduction).should eq(deduction)
     end
   end
 
   describe "GET new" do
     it "assigns a new deduction as @deduction" do
-      get :new, {}, valid_session
+      get :new, {}
       assigns(:deduction).should be_a_new(Deduction)
     end
   end
@@ -56,7 +55,7 @@ describe DeductionsController do
   describe "GET edit" do
     it "assigns the requested deduction as @deduction" do
       deduction = Deduction.create! valid_attributes
-      get :edit, {:id => deduction.to_param}, valid_session
+      get :edit, {:id => deduction.to_param}
       assigns(:deduction).should eq(deduction)
     end
   end
@@ -65,18 +64,18 @@ describe DeductionsController do
     describe "with valid params" do
       it "creates a new Deduction" do
         expect {
-          post :create, {:deduction => valid_attributes}, valid_session
+          post :create, {:deduction => valid_attributes}
         }.to change(Deduction, :count).by(1)
       end
 
       it "assigns a newly created deduction as @deduction" do
-        post :create, {:deduction => valid_attributes}, valid_session
+        post :create, {:deduction => valid_attributes}
         assigns(:deduction).should be_a(Deduction)
         assigns(:deduction).should be_persisted
       end
 
       it "redirects to the created deduction" do
-        post :create, {:deduction => valid_attributes}, valid_session
+        post :create, {:deduction => valid_attributes}
         response.should redirect_to(Deduction.last)
       end
     end
@@ -85,14 +84,14 @@ describe DeductionsController do
       it "assigns a newly created but unsaved deduction as @deduction" do
         # Trigger the behavior that occurs when invalid params are submitted
         Deduction.any_instance.stub(:save).and_return(false)
-        post :create, {:deduction => { "value" => "invalid value" }}, valid_session
+        post :create, {:deduction => { "value" => "invalid value" }}
         assigns(:deduction).should be_a_new(Deduction)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Deduction.any_instance.stub(:save).and_return(false)
-        post :create, {:deduction => { "value" => "invalid value" }}, valid_session
+        post :create, {:deduction => { "value" => "invalid value" }}
         response.should render_template("new")
       end
     end
@@ -107,18 +106,18 @@ describe DeductionsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Deduction.any_instance.should_receive(:update_attributes).with({ "value" => "1.5" })
-        put :update, {:id => deduction.to_param, :deduction => { "value" => "1.5" }}, valid_session
+        put :update, {:id => deduction.to_param, :deduction => { "value" => "1.5" }}
       end
 
       it "assigns the requested deduction as @deduction" do
         deduction = Deduction.create! valid_attributes
-        put :update, {:id => deduction.to_param, :deduction => valid_attributes}, valid_session
+        put :update, {:id => deduction.to_param, :deduction => valid_attributes}
         assigns(:deduction).should eq(deduction)
       end
 
       it "redirects to the deduction" do
         deduction = Deduction.create! valid_attributes
-        put :update, {:id => deduction.to_param, :deduction => valid_attributes}, valid_session
+        put :update, {:id => deduction.to_param, :deduction => valid_attributes}
         response.should redirect_to(deduction)
       end
     end
@@ -128,7 +127,7 @@ describe DeductionsController do
         deduction = Deduction.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Deduction.any_instance.stub(:save).and_return(false)
-        put :update, {:id => deduction.to_param, :deduction => { "value" => "invalid value" }}, valid_session
+        put :update, {:id => deduction.to_param, :deduction => { "value" => "invalid value" }}
         assigns(:deduction).should eq(deduction)
       end
 
@@ -136,7 +135,7 @@ describe DeductionsController do
         deduction = Deduction.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Deduction.any_instance.stub(:save).and_return(false)
-        put :update, {:id => deduction.to_param, :deduction => { "value" => "invalid value" }}, valid_session
+        put :update, {:id => deduction.to_param, :deduction => { "value" => "invalid value" }}
         response.should render_template("edit")
       end
     end
@@ -146,13 +145,13 @@ describe DeductionsController do
     it "destroys the requested deduction" do
       deduction = Deduction.create! valid_attributes
       expect {
-        delete :destroy, {:id => deduction.to_param}, valid_session
+        delete :destroy, {:id => deduction.to_param}
       }.to change(Deduction, :count).by(-1)
     end
 
     it "redirects to the deductions list" do
       deduction = Deduction.create! valid_attributes
-      delete :destroy, {:id => deduction.to_param}, valid_session
+      delete :destroy, {:id => deduction.to_param}
       response.should redirect_to(deductions_url)
     end
   end

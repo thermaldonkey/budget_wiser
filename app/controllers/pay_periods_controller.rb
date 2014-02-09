@@ -2,7 +2,7 @@ class PayPeriodsController < ApplicationController
   # GET /pay_periods
   # GET /pay_periods.json
   def index
-    @pay_periods = PayPeriod.all
+    @pay_periods = current_user.pay_periods
 
     respond_to do |format|
       format.html # index.html.erb

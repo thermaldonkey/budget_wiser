@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   has_many :pay_periods
   has_many :deductions
+  has_many :notifications
 
   private
 

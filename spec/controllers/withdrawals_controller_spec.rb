@@ -25,15 +25,15 @@ describe WithdrawalsController do
   # adjust the attributes here as well.
   let(:valid_attributes) { { "value" => "1.5" } }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # WithdrawalsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:user) { create(:user) }
+
+  before { sign_in user }
 
   describe "GET index" do
     it "assigns all withdrawals as @withdrawals" do
-      withdrawal = Withdrawal.create! valid_attributes
-      get :index, {}, valid_session
+      pay_period = create(:pay_period, user: user)
+      withdrawal = create(:withdrawal, pay_period: pay_period)
+      get :index, {}
       assigns(:withdrawals).should eq([withdrawal])
     end
   end
@@ -41,14 +41,14 @@ describe WithdrawalsController do
   describe "GET show" do
     it "assigns the requested withdrawal as @withdrawal" do
       withdrawal = Withdrawal.create! valid_attributes
-      get :show, {:id => withdrawal.to_param}, valid_session
+      get :show, {:id => withdrawal.to_param}
       assigns(:withdrawal).should eq(withdrawal)
     end
   end
 
   describe "GET new" do
     it "assigns a new withdrawal as @withdrawal" do
-      get :new, {}, valid_session
+      get :new, {}
       assigns(:withdrawal).should be_a_new(Withdrawal)
     end
   end
@@ -56,7 +56,7 @@ describe WithdrawalsController do
   describe "GET edit" do
     it "assigns the requested withdrawal as @withdrawal" do
       withdrawal = Withdrawal.create! valid_attributes
-      get :edit, {:id => withdrawal.to_param}, valid_session
+      get :edit, {:id => withdrawal.to_param}
       assigns(:withdrawal).should eq(withdrawal)
     end
   end
@@ -65,18 +65,18 @@ describe WithdrawalsController do
     describe "with valid params" do
       it "creates a new Withdrawal" do
         expect {
-          post :create, {:withdrawal => valid_attributes}, valid_session
+          post :create, {:withdrawal => valid_attributes}
         }.to change(Withdrawal, :count).by(1)
       end
 
       it "assigns a newly created withdrawal as @withdrawal" do
-        post :create, {:withdrawal => valid_attributes}, valid_session
+        post :create, {:withdrawal => valid_attributes}
         assigns(:withdrawal).should be_a(Withdrawal)
         assigns(:withdrawal).should be_persisted
       end
 
       it "redirects to the created withdrawal" do
-        post :create, {:withdrawal => valid_attributes}, valid_session
+        post :create, {:withdrawal => valid_attributes}
         response.should redirect_to(Withdrawal.last)
       end
     end
@@ -85,14 +85,14 @@ describe WithdrawalsController do
       it "assigns a newly created but unsaved withdrawal as @withdrawal" do
         # Trigger the behavior that occurs when invalid params are submitted
         Withdrawal.any_instance.stub(:save).and_return(false)
-        post :create, {:withdrawal => { "value" => "invalid value" }}, valid_session
+        post :create, {:withdrawal => { "value" => "invalid value" }}
         assigns(:withdrawal).should be_a_new(Withdrawal)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Withdrawal.any_instance.stub(:save).and_return(false)
-        post :create, {:withdrawal => { "value" => "invalid value" }}, valid_session
+        post :create, {:withdrawal => { "value" => "invalid value" }}
         response.should render_template("new")
       end
     end
@@ -107,18 +107,18 @@ describe WithdrawalsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Withdrawal.any_instance.should_receive(:update_attributes).with({ "value" => "1.5" })
-        put :update, {:id => withdrawal.to_param, :withdrawal => { "value" => "1.5" }}, valid_session
+        put :update, {:id => withdrawal.to_param, :withdrawal => { "value" => "1.5" }}
       end
 
       it "assigns the requested withdrawal as @withdrawal" do
         withdrawal = Withdrawal.create! valid_attributes
-        put :update, {:id => withdrawal.to_param, :withdrawal => valid_attributes}, valid_session
+        put :update, {:id => withdrawal.to_param, :withdrawal => valid_attributes}
         assigns(:withdrawal).should eq(withdrawal)
       end
 
       it "redirects to the withdrawal" do
         withdrawal = Withdrawal.create! valid_attributes
-        put :update, {:id => withdrawal.to_param, :withdrawal => valid_attributes}, valid_session
+        put :update, {:id => withdrawal.to_param, :withdrawal => valid_attributes}
         response.should redirect_to(withdrawal)
       end
     end
@@ -128,7 +128,7 @@ describe WithdrawalsController do
         withdrawal = Withdrawal.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Withdrawal.any_instance.stub(:save).and_return(false)
-        put :update, {:id => withdrawal.to_param, :withdrawal => { "value" => "invalid value" }}, valid_session
+        put :update, {:id => withdrawal.to_param, :withdrawal => { "value" => "invalid value" }}
         assigns(:withdrawal).should eq(withdrawal)
       end
 
@@ -136,7 +136,7 @@ describe WithdrawalsController do
         withdrawal = Withdrawal.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Withdrawal.any_instance.stub(:save).and_return(false)
-        put :update, {:id => withdrawal.to_param, :withdrawal => { "value" => "invalid value" }}, valid_session
+        put :update, {:id => withdrawal.to_param, :withdrawal => { "value" => "invalid value" }}
         response.should render_template("edit")
       end
     end
@@ -146,13 +146,13 @@ describe WithdrawalsController do
     it "destroys the requested withdrawal" do
       withdrawal = Withdrawal.create! valid_attributes
       expect {
-        delete :destroy, {:id => withdrawal.to_param}, valid_session
+        delete :destroy, {:id => withdrawal.to_param}
       }.to change(Withdrawal, :count).by(-1)
     end
 
     it "redirects to the withdrawals list" do
       withdrawal = Withdrawal.create! valid_attributes
-      delete :destroy, {:id => withdrawal.to_param}, valid_session
+      delete :destroy, {:id => withdrawal.to_param}
       response.should redirect_to(withdrawals_url)
     end
   end

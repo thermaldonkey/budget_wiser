@@ -2,7 +2,7 @@ class WithdrawalsController < ApplicationController
   # GET /withdrawals
   # GET /withdrawals.json
   def index
-    @withdrawals = Withdrawal.all
+    @withdrawals = current_user.pay_periods.last.withdrawals
 
     respond_to do |format|
       format.html # index.html.erb

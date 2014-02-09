@@ -25,15 +25,14 @@ describe NotificationsController do
   # adjust the attributes here as well.
   let(:valid_attributes) { attributes_for(:notification) }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # NotificationsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:user) { create(:user) }
+
+  before { sign_in user }
 
   describe "GET index" do
     it "assigns all notifications as @notifications" do
-      notification = Notification.create! valid_attributes
-      get :index, {}, valid_session
+      notification = create(:notification, user: user)
+      get :index, {}
       assigns(:notifications).should eq([notification])
     end
   end
@@ -41,14 +40,14 @@ describe NotificationsController do
   describe "GET show" do
     it "assigns the requested notification as @notification" do
       notification = Notification.create! valid_attributes
-      get :show, {:id => notification.to_param}, valid_session
+      get :show, {:id => notification.to_param}
       assigns(:notification).should eq(notification)
     end
   end
 
   describe "GET new" do
     it "assigns a new notification as @notification" do
-      get :new, {}, valid_session
+      get :new, {}
       assigns(:notification).should be_a_new(Notification)
     end
   end
@@ -56,7 +55,7 @@ describe NotificationsController do
   describe "GET edit" do
     it "assigns the requested notification as @notification" do
       notification = Notification.create! valid_attributes
-      get :edit, {:id => notification.to_param}, valid_session
+      get :edit, {:id => notification.to_param}
       assigns(:notification).should eq(notification)
     end
   end
@@ -65,18 +64,18 @@ describe NotificationsController do
     describe "with valid params" do
       it "creates a new Notification" do
         expect {
-          post :create, {:notification => valid_attributes}, valid_session
+          post :create, {:notification => valid_attributes}
         }.to change(Notification, :count).by(1)
       end
 
       it "assigns a newly created notification as @notification" do
-        post :create, {:notification => valid_attributes}, valid_session
+        post :create, {:notification => valid_attributes}
         assigns(:notification).should be_a(Notification)
         assigns(:notification).should be_persisted
       end
 
       it "redirects to the created notification" do
-        post :create, {:notification => valid_attributes}, valid_session
+        post :create, {:notification => valid_attributes}
         response.should redirect_to(Notification.last)
       end
     end
@@ -85,14 +84,14 @@ describe NotificationsController do
       it "assigns a newly created but unsaved notification as @notification" do
         # Trigger the behavior that occurs when invalid params are submitted
         Notification.any_instance.stub(:save).and_return(false)
-        post :create, {:notification => { "body" => "invalid value" }}, valid_session
+        post :create, {:notification => { "body" => "invalid value" }}
         assigns(:notification).should be_a_new(Notification)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Notification.any_instance.stub(:save).and_return(false)
-        post :create, {:notification => { "body" => "invalid value" }}, valid_session
+        post :create, {:notification => { "body" => "invalid value" }}
         response.should render_template("new")
       end
     end
@@ -107,18 +106,18 @@ describe NotificationsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Notification.any_instance.should_receive(:update_attributes).with({ "body" => "MyString" })
-        put :update, {:id => notification.to_param, :notification => { "body" => "MyString" }}, valid_session
+        put :update, {:id => notification.to_param, :notification => { "body" => "MyString" }}
       end
 
       it "assigns the requested notification as @notification" do
         notification = Notification.create! valid_attributes
-        put :update, {:id => notification.to_param, :notification => valid_attributes}, valid_session
+        put :update, {:id => notification.to_param, :notification => valid_attributes}
         assigns(:notification).should eq(notification)
       end
 
       it "redirects to the notification" do
         notification = Notification.create! valid_attributes
-        put :update, {:id => notification.to_param, :notification => valid_attributes}, valid_session
+        put :update, {:id => notification.to_param, :notification => valid_attributes}
         response.should redirect_to(notification)
       end
     end
@@ -128,7 +127,7 @@ describe NotificationsController do
         notification = Notification.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Notification.any_instance.stub(:save).and_return(false)
-        put :update, {:id => notification.to_param, :notification => { "body" => "invalid value" }}, valid_session
+        put :update, {:id => notification.to_param, :notification => { "body" => "invalid value" }}
         assigns(:notification).should eq(notification)
       end
 
@@ -136,7 +135,7 @@ describe NotificationsController do
         notification = Notification.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Notification.any_instance.stub(:save).and_return(false)
-        put :update, {:id => notification.to_param, :notification => { "body" => "invalid value" }}, valid_session
+        put :update, {:id => notification.to_param, :notification => { "body" => "invalid value" }}
         response.should render_template("edit")
       end
     end
@@ -146,13 +145,13 @@ describe NotificationsController do
     it "destroys the requested notification" do
       notification = Notification.create! valid_attributes
       expect {
-        delete :destroy, {:id => notification.to_param}, valid_session
+        delete :destroy, {:id => notification.to_param}
       }.to change(Notification, :count).by(-1)
     end
 
     it "redirects to the notifications list" do
       notification = Notification.create! valid_attributes
-      delete :destroy, {:id => notification.to_param}, valid_session
+      delete :destroy, {:id => notification.to_param}
       response.should redirect_to(notifications_url)
     end
   end
