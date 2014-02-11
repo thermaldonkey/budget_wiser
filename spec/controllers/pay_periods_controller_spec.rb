@@ -39,7 +39,7 @@ describe PayPeriodsController do
 
   describe "GET show" do
     it "assigns the requested pay_period as @pay_period" do
-      pay_period = PayPeriod.create! valid_attributes
+      pay_period = create(:pay_period, user: user)
       get :show, {:id => pay_period.to_param}
       assigns(:pay_period).should eq(pay_period)
     end
@@ -54,7 +54,7 @@ describe PayPeriodsController do
 
   describe "GET edit" do
     it "assigns the requested pay_period as @pay_period" do
-      pay_period = PayPeriod.create! valid_attributes
+      pay_period = create(:pay_period, user: user)
       get :edit, {:id => pay_period.to_param}
       assigns(:pay_period).should eq(pay_period)
     end
@@ -64,18 +64,18 @@ describe PayPeriodsController do
     describe "with valid params" do
       it "creates a new PayPeriod" do
         expect {
-          post :create, {:pay_period => valid_attributes}
+          post :create, {:pay_period => valid_attributes.merge({user_id: user.id})}
         }.to change(PayPeriod, :count).by(1)
       end
 
       it "assigns a newly created pay_period as @pay_period" do
-        post :create, {:pay_period => valid_attributes}
+        post :create, {:pay_period => valid_attributes.merge({user_id: user.id})}
         assigns(:pay_period).should be_a(PayPeriod)
         assigns(:pay_period).should be_persisted
       end
 
       it "redirects to the created pay_period" do
-        post :create, {:pay_period => valid_attributes}
+        post :create, {:pay_period => valid_attributes.merge({user_id: user.id})}
         response.should redirect_to(PayPeriod.last)
       end
     end
@@ -100,7 +100,7 @@ describe PayPeriodsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested pay_period" do
-        pay_period = PayPeriod.create! valid_attributes
+        pay_period = create(:pay_period, user: user)
         # Assuming there are no other pay_periods in the database, this
         # specifies that the PayPeriod created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -110,13 +110,13 @@ describe PayPeriodsController do
       end
 
       it "assigns the requested pay_period as @pay_period" do
-        pay_period = PayPeriod.create! valid_attributes
+        pay_period = create(:pay_period, user: user)
         put :update, {:id => pay_period.to_param, :pay_period => valid_attributes}
         assigns(:pay_period).should eq(pay_period)
       end
 
       it "redirects to the pay_period" do
-        pay_period = PayPeriod.create! valid_attributes
+        pay_period = create(:pay_period, user: user)
         put :update, {:id => pay_period.to_param, :pay_period => valid_attributes}
         response.should redirect_to(pay_period)
       end
@@ -124,7 +124,7 @@ describe PayPeriodsController do
 
     describe "with invalid params" do
       it "assigns the pay_period as @pay_period" do
-        pay_period = PayPeriod.create! valid_attributes
+        pay_period = create(:pay_period, user: user)
         # Trigger the behavior that occurs when invalid params are submitted
         PayPeriod.any_instance.stub(:save).and_return(false)
         put :update, {:id => pay_period.to_param, :pay_period => { "gross_income" => "invalid value" }}
@@ -132,7 +132,7 @@ describe PayPeriodsController do
       end
 
       it "re-renders the 'edit' template" do
-        pay_period = PayPeriod.create! valid_attributes
+        pay_period = create(:pay_period, user: user)
         # Trigger the behavior that occurs when invalid params are submitted
         PayPeriod.any_instance.stub(:save).and_return(false)
         put :update, {:id => pay_period.to_param, :pay_period => { "gross_income" => "invalid value" }}
@@ -143,14 +143,14 @@ describe PayPeriodsController do
 
   describe "DELETE destroy" do
     it "destroys the requested pay_period" do
-      pay_period = PayPeriod.create! valid_attributes
+      pay_period = create(:pay_period, user: user)
       expect {
         delete :destroy, {:id => pay_period.to_param}
       }.to change(PayPeriod, :count).by(-1)
     end
 
     it "redirects to the pay_periods list" do
-      pay_period = PayPeriod.create! valid_attributes
+      pay_period = create(:pay_period, user: user)
       delete :destroy, {:id => pay_period.to_param}
       response.should redirect_to(pay_periods_url)
     end

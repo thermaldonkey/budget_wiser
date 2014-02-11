@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe "pay_periods/new" do
   before(:each) do
+    user = create(:user)
     assign(:pay_period, stub_model(PayPeriod,
       :gross_income => 1.5,
       :net_income => 1.5,
       :savings => 1.5,
-      :belongs_to => ""
+      :user_id => user.id
     ).as_new_record)
   end
 

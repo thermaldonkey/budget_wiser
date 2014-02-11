@@ -6,16 +6,6 @@
 </p>
 
 <p>
-  <b>Net income:</b>
-  <%= @pay_period.net_income %>
-</p>
-
-<p>
-  <b>Savings:</b>
-  <%= @pay_period.savings %>
-</p>
-
-<p>
   <b>End date:</b>
   <%= @pay_period.end_date %>
 </p>
@@ -26,10 +16,9 @@
 </p>
 
 <p>
-  <b>Belongs to:</b>
-  <%= @pay_period.belongs_to %>
+  <b>Balance:</b>
+  <%= (@pay_period.balance).round(2) %>
 </p>
-
 
 <%= link_to 'Edit', edit_pay_period_path(@pay_period) %> |
 <%= link_to 'Back', pay_periods_path %>

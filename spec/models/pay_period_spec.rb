@@ -27,12 +27,27 @@ describe PayPeriod do
   it { should belong_to :user }
   it { should have_many :withdrawals }
 
+  it "should allow nil net_income" do
+    period = build(:pay_period)
+    period.should be_valid
+    period.net_income = nil
+    period.should be_valid
+  end
+
+  it "should allow nil savings" do
+    period = build(:pay_period)
+    period.should be_valid
+    period.savings = nil
+    period.should be_valid
+  end
+
   describe "#balance" do
-    let(:period) { create(:pay_period, net_income: 200) }
+    let(:period) { create(:pay_period) }
 
     before do
       period.user.allowance = 0.75
       period.user.save
+      period.update_attributes(net_income: 200)
       period.withdrawals << create(:withdrawal, value: 15, pay_period_id: period.id)
       period.withdrawals << create(:withdrawal, value: 25, pay_period_id: period.id)
     end
@@ -63,11 +78,12 @@ describe PayPeriod do
   end
 
   describe "#calculate_savings" do
-    let(:period) { create(:pay_period, net_income: 125) }
+    let(:period) { create(:pay_period) }
 
     before do
       period.user.allowance = 0.75
       period.user.save
+      period.update_attributes(net_income: 125)
       period.withdrawals << create(:withdrawal, value: 20, pay_period_id: period.id)
       period.withdrawals << create(:withdrawal, value: 32, pay_period_id: period.id)
     end
