@@ -20,5 +20,10 @@
   <%= (@pay_period.balance).round(2) %>
 </p>
 
+<p>
+  <b>New withdrawal:</b>
+  <%= render partial: "withdrawals/form" %>
+</p>
+
 <%= link_to 'Edit', edit_pay_period_path(@pay_period) %> |
 <%= link_to 'Back', pay_periods_path %>

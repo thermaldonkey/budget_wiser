@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Value</th>
-    <th>References</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +11,6 @@
 <% @withdrawals.each do |withdrawal| %>
   <tr>
     <td><%= withdrawal.value %></td>
-    <td><%= withdrawal.references %></td>
     <td><%= link_to 'Show', withdrawal %></td>
     <td><%= link_to 'Edit', edit_withdrawal_path(withdrawal) %></td>
     <td><%= link_to 'Destroy', withdrawal, method: :delete, data: { confirm: 'Are you sure?' } %></td>

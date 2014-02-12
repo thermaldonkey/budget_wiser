@@ -26,6 +26,7 @@ describe WithdrawalsController do
   let(:valid_attributes) { { "value" => "1.5" } }
 
   let(:user) { create(:user) }
+  let(:pay_period) { create(:pay_period, user_id: user.id) }
 
   before { sign_in user }
 
@@ -65,19 +66,19 @@ describe WithdrawalsController do
     describe "with valid params" do
       it "creates a new Withdrawal" do
         expect {
-          post :create, {:withdrawal => valid_attributes}
+          post :create, {:withdrawal => valid_attributes.merge({pay_period_id: pay_period.id})}
         }.to change(Withdrawal, :count).by(1)
       end
 
       it "assigns a newly created withdrawal as @withdrawal" do
-        post :create, {:withdrawal => valid_attributes}
+        post :create, {:withdrawal => valid_attributes.merge({pay_period_id: pay_period.id})}
         assigns(:withdrawal).should be_a(Withdrawal)
         assigns(:withdrawal).should be_persisted
       end
 
-      it "redirects to the created withdrawal" do
-        post :create, {:withdrawal => valid_attributes}
-        response.should redirect_to(Withdrawal.last)
+      it "redirects to the pay period of the created withdrawal" do
+        post :create, {:withdrawal => valid_attributes.merge({pay_period_id: pay_period.id})}
+        response.should redirect_to(Withdrawal.last.pay_period)
       end
     end
 

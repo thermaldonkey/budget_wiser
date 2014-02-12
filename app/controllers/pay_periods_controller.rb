@@ -14,6 +14,7 @@ class PayPeriodsController < ApplicationController
   # GET /pay_periods/1.json
   def show
     @pay_period = PayPeriod.find(params[:id])
+    @withdrawal = Withdrawal.new(pay_period_id: @pay_period.id)
 
     respond_to do |format|
       format.html # show.html.erb

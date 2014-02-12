@@ -44,8 +44,8 @@ class WithdrawalsController < ApplicationController
 
     respond_to do |format|
       if @withdrawal.save
-        format.html { redirect_to @withdrawal, notice: 'Withdrawal was successfully created.' }
-        format.json { render json: @withdrawal, status: :created, location: @withdrawal }
+        format.html { redirect_to @withdrawal.pay_period, notice: 'Withdrawal was successfully created.' }
+        format.json { render json: @withdrawal.pay_period, status: :created, location: @withdrawal.pay_period }
       else
         format.html { render action: "new" }
         format.json { render json: @withdrawal.errors, status: :unprocessable_entity }

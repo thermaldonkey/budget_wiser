@@ -15,9 +15,10 @@
     <%= f.label :value %><br />
     <%= f.text_field :value %>
   </div>
-  <div class="field">
-    <%= f.label :references %><br />
-    <%= f.text_field :references %>
+  <div>
+    <% if @pay_period %>
+      <%= f.hidden_field :pay_period_id, value: @pay_period.id %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
