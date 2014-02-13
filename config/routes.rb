@@ -15,6 +15,9 @@ BetaBudget::Application.routes.draw do
 
   resources :users, except: [:index]
 
+  get 'current_pay_period' => 'pay_periods#current'
+
+  root :to => 'pay_periods#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -45,6 +45,33 @@ describe PayPeriodsController do
     end
   end
 
+  describe "GET current" do
+    subject { get :current }
+
+    describe "when a current pay_period exists" do
+      let!(:pay_period) { create(:pay_period, end_date: Date.today + 1, user: user) }
+
+      it "assigns the requested pay_period as @pay_period" do
+        subject
+        assigns(:pay_period).should eq(pay_period)
+      end
+    end
+
+    describe "when no current pay_period exists" do
+      let!(:pay_period) { create(:pay_period, user: user) }
+
+      it "assigns @pay_period to nil" do
+        subject
+        assigns(:pay_period).should be_nil
+      end
+
+      it "renders the 'missing' template" do
+        subject
+        response.should render_template(:missing)
+      end
+    end
+  end
+
   describe "GET new" do
     it "assigns a new pay_period as @pay_period" do
       get :new, {}

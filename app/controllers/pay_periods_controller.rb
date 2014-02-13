@@ -22,6 +22,25 @@ class PayPeriodsController < ApplicationController
     end
   end
 
+  # GET /pay_periods/current
+  # GET /pay_periods/current.json
+  def current
+    @pay_period = current_user.pay_periods.where("end_date >= '#{Date.today}'").first
+    if @pay_period
+      @withdrawal = Withdrawal.new(pay_period_id: @pay_period.id)
+
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @pay_period }
+      end
+    else
+      respond_to do |format|
+        format.html { render :missing }
+        format.json { render text: "Missing pay period" }
+      end
+    end
+  end
+
   # GET /pay_periods/new
   # GET /pay_periods/new.json
   def new
