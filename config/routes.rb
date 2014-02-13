@@ -17,7 +17,7 @@ BetaBudget::Application.routes.draw do
 
   get 'current_pay_period' => 'pay_periods#current'
 
-  root :to => 'pay_periods#index'
+  root :to => 'pay_periods#current'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

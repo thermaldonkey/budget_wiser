@@ -51,9 +51,23 @@ describe PayPeriodsController do
     describe "when a current pay_period exists" do
       let!(:pay_period) { create(:pay_period, end_date: Date.today + 1, user: user) }
 
-      it "assigns the requested pay_period as @pay_period" do
+      it "assigns the pay_period as @pay_period" do
         subject
         assigns(:pay_period).should eq(pay_period)
+      end
+    end
+
+    describe "when current and future pay_periods exist" do
+      let!(:future_pay_period) do
+        create(:pay_period, start_date: Date.today + 1, end_date: Date.today + 2, user: user)
+      end
+      let!(:current_pay_period) do
+        create(:pay_period, start_date: Date.today - 1, end_date: Date.today + 1, user: user)
+      end
+
+      it "assigns the pay_period as @pay_period" do
+        subject
+        assigns(:pay_period).should eq(current_pay_period)
       end
     end
 
