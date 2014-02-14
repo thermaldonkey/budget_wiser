@@ -16,12 +16,12 @@
     <%= f.text_field :gross_income %>
   </div>
   <div class="field">
-    <%= f.label :end_date %><br />
-    <%= f.date_select :end_date %>
-  </div>
-  <div class="field">
     <%= f.label :start_date %><br />
     <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
   </div>
   <div>
     <%= f.hidden_field :user_id, value: current_user.id %>
