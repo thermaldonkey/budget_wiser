@@ -7,6 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="navbar">
+    <%= link_to "Current pay period", current_pay_period_path %>
+    <%= link_to "Deductions", deductions_path %>
+    <%= link_to "Current withdrawals", withdrawals_path %>
+  </div>
 
 <%= yield %>
 
