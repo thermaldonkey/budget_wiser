@@ -15,6 +15,10 @@
     <%= f.label :value %><br />
     <%= f.text_field :value %>
   </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_field :memo %>
+  </div>
   <div>
     <% if @pay_period %>
       <%= f.hidden_field :pay_period_id, value: @pay_period.id %>

@@ -1,5 +1,5 @@
 class Withdrawal < ActiveRecord::Base
-  attr_accessible :pay_period_id, :value
+  attr_accessible :pay_period_id, :value, :memo
 
   validates_numericality_of :value, :greater_than => 0
 

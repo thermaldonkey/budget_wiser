@@ -5,6 +5,10 @@
   <%= @withdrawal.value %>
 </p>
 
+<p>
+  <b>Memo:</b>
+  <%= @withdrawal.memo %>
+</p>
 
 <%= link_to 'Edit', edit_withdrawal_path(@withdrawal) %> |
 <%= link_to 'Back', withdrawals_path %>

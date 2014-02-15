@@ -1,5 +1,5 @@
 class Deduction < ActiveRecord::Base
-  attr_accessible :monthly_frequency, :value, :user_id
+  attr_accessible :monthly_frequency, :value, :user_id, :memo
 
   validates_numericality_of :monthly_frequency, :greater_than => 0
   validates_numericality_of :value, :greater_than => 0

@@ -19,6 +19,10 @@
     <%= f.label :monthly_frequency %><br />
     <%= f.number_field :monthly_frequency %>
   </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_field :memo %>
+  </div>
   <div>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>

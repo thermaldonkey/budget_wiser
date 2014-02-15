@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107040541) do
+ActiveRecord::Schema.define(:version => 20140215230524) do
 
   create_table "deductions", :force => true do |t|
     t.float    "value"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20140107040541) do
     t.integer  "user_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.string   "memo"
   end
 
   add_index "deductions", ["user_id"], :name => "index_deductions_on_user_id"
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20140107040541) do
     t.integer  "pay_period_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "memo"
   end
 
 end

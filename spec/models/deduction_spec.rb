@@ -5,10 +5,12 @@ describe Deduction do
 
   it { should respond_to :monthly_frequency }
   it { should respond_to :value }
+  it { should respond_to :memo }
 
   it { should allow_mass_assignment_of :monthly_frequency }
   it { should allow_mass_assignment_of :value }
   it { should allow_mass_assignment_of :user_id }
+  it { should respond_to :memo }
 
   it { should validate_numericality_of :monthly_frequency }
   it { should validate_numericality_of :value }
