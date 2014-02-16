@@ -4,6 +4,7 @@
   <tr>
     <th>Value</th>
     <th>Memo</th>
+    <th>Date</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= withdrawal.value %></td>
     <td><%= withdrawal.memo %></td>
+    <td><%= withdrawal.created_at %></td>
     <td><%= link_to 'Show', withdrawal %></td>
     <td><%= link_to 'Edit', edit_withdrawal_path(withdrawal) %></td>
     <td><%= link_to 'Destroy', withdrawal, method: :delete, data: { confirm: 'Are you sure?' } %></td>

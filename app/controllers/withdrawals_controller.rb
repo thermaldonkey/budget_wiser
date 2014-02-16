@@ -2,7 +2,7 @@ class WithdrawalsController < ApplicationController
   # GET /withdrawals
   # GET /withdrawals.json
   def index
-    @withdrawals = current_user.pay_periods.last.withdrawals
+    @withdrawals = current_user.pay_periods.last.withdrawals.order('created_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
