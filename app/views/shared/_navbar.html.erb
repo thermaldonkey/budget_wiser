@@ -1,6 +1,24 @@
-<% if current_user %>
-  <%= link_to "Current pay period", current_pay_period_path %>
-  <%= link_to "Deductions", deductions_path %>
-  <%= link_to "Current withdrawals", withdrawals_path %> |
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-<% end %>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#budget-navbar-collapse-1">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Beta Budget</a>
+    </div>
+    <div class="collapse navbar-collapse" id="budget-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left">
+        <% if current_user %>
+            <li><%= link_to "Home", current_pay_period_path %></li>
+            <li><%= link_to "Deductions", deductions_path %></li>
+            <li><%= link_to "Current withdrawals", withdrawals_path %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
