@@ -10,3 +10,4 @@ $(document).ready ->
   percentageSpent = 1 - (balance / netIncome)
   progressBar = document.getElementById("balance_progress")
   $(progressBar).width( $(progressBar).width()+(percentageSpent * widthOfDiv) )
+  progressBar.innerText = Math.floor(percentageSpent * 100) + "%"
