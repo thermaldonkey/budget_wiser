@@ -1,3 +1,14 @@
 // Place all the styles related to the Deductions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@media (min-width: 992px) {
+  #deductions_index {
+    margin: auto;
+    width: 60rem;
+  }
+}
+
+#deductions_index .btn-group-column {
+  min-width: 250px;
+}

@@ -1,27 +1,33 @@
-<h1>Listing deductions</h1>
+<div id="deductions_index" class="jumbotron">
+  <h1>Listing deductions</h1>
 
-<table>
-  <tr>
-    <th>Value</th>
-    <th>Monthly frequency</th>
-    <th>Memo</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <th>Value</th>
+        <th>Monthly frequency</th>
+        <th>Memo</th>
+        <th class="btn-group-column"></th>
+      </tr>
 
-<% @deductions.each do |deduction| %>
-  <tr>
-    <td><%= deduction.value %></td>
-    <td><%= deduction.monthly_frequency %></td>
-    <td><%= deduction.memo %></td>
-    <td><%= link_to 'Show', deduction %></td>
-    <td><%= link_to 'Edit', edit_deduction_path(deduction) %></td>
-    <td><%= link_to 'Destroy', deduction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <% @deductions.each do |deduction| %>
+      <tr>
+        <td><%= deduction.value %></td>
+        <td><%= deduction.monthly_frequency %></td>
+        <td><%= deduction.memo %></td>
+        <td class="btn-group-column">
+          <div class="btn-group">
+            <%= link_to 'Show', deduction, {class: "btn btn-default"} %>
+            <%= link_to 'Edit', edit_deduction_path(deduction), {class: "btn btn-info"} %>
+            <%= link_to 'Destroy', deduction, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"} %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
 
-<br />
+  <br />
 
-<%= link_to 'New Deduction', new_deduction_path %>
+  <%= render partial: "deductions/form" %>
+</div>

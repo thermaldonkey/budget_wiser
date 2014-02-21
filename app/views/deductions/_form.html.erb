@@ -13,20 +13,29 @@
 
   <div class="field">
     <%= f.label :value %><br />
-    <%= f.text_field :value %>
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :value, {class: "form-control", placeholder: "0.00"} %>
+    </div>
   </div>
   <div class="field">
     <%= f.label :monthly_frequency %><br />
-    <%= f.number_field :monthly_frequency %>
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon"></span>
+      <%= f.number_field :monthly_frequency, {class: "form-control"} %>
+    </div>
   </div>
   <div class="field">
     <%= f.label :memo %><br />
-    <%= f.text_field :memo %>
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">#</span>
+      <%= f.text_field :memo, {class: "form-control", placeholder: "Pay them bills..."} %>
+    </div>
   </div>
   <div>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

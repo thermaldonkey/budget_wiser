@@ -3,6 +3,7 @@ class DeductionsController < ApplicationController
   # GET /deductions.json
   def index
     @deductions = current_user.deductions
+    @deduction = Deduction.new(user_id: current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
