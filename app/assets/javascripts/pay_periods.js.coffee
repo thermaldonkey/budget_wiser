@@ -3,11 +3,12 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  widthOfDiv = 300
+  widthOfProgressDiv = document.getElementById("progress").offsetWidth
   netIncome = document.getElementById("pay_period_net_income").value
   balanceString = document.getElementById("pay_period_balance").innerText
   balance = parseFloat(balanceString.split(" ")[1])
   percentageSpent = 1 - (balance / netIncome)
   progressBar = document.getElementById("balance_progress")
-  $(progressBar).width( $(progressBar).width()+(percentageSpent * widthOfDiv) )
-  progressBar.innerText = Math.floor(percentageSpent * 100) + "%"
+  percentProgressed = (Math.floor(percentageSpent * 100) + "%")
+  progressBar.style.width = percentProgressed
+  progressBar.innerText = percentProgressed

@@ -13,11 +13,17 @@
 
   <div class="field">
     <%= f.label :value %><br />
-    <%= f.text_field :value %>
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :value, {class: "form-control", placeholder: "0.00"} %>
+    </div>
   </div>
   <div class="field">
     <%= f.label :memo %><br />
-    <%= f.text_field :memo %>
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">#</span>
+      <%= f.text_field :memo, {class: "form-control", placeholder: "Whatchu buyin, son?"} %>
+    </div>
   </div>
   <div>
     <% if @pay_period %>
@@ -26,6 +32,5 @@
   </div>
   <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
-    <%#= f.button :submit %>
   </div>
 <% end %>

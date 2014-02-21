@@ -3,18 +3,8 @@
   <input id="pay_period_net_income" type="hidden" value=<%= @pay_period.net_income %> />
 
   <p>
-    <b>Gross income:</b>
-    <%= @pay_period.gross_income %>
-  </p>
-
-  <p>
-    <b>Start date:</b>
-    <%= @pay_period.start_date %>
-  </p>
-
-  <p>
     <b>End date:</b>
-    <%= @pay_period.end_date %>
+    <%= @pay_period.end_date.strftime("%m/%d") %>
   </p>
 
   <p id="pay_period_balance">
@@ -22,6 +12,9 @@
       <%= (@pay_period.balance).round(2) %>
   </p>
 
+  <p>
+    <b>Allowance spent:</b>
+  </p>
   <div id="progress" class="progress active">
     <div id="balance_progress" class="progress-bar" style="width: 0%;"></div>
   </div>
@@ -31,6 +24,8 @@
     <%= render partial: "withdrawals/form" %>
   </p>
 
-  <%= link_to 'Edit', edit_pay_period_path(@pay_period), {class: 'btn btn-info'} %> |
-  <%= link_to 'Back', pay_periods_path, {class: 'btn btn-default'} %>
+  <div class="btn-group">
+    <%= link_to 'Edit', edit_pay_period_path(@pay_period), {class: 'btn btn-info'} %>
+    <%= link_to 'Back', pay_periods_path, {class: 'btn btn-default'} %>
+  </div>
 </div>
