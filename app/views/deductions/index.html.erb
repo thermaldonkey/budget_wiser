@@ -5,16 +5,16 @@
     <table class="table">
       <tr>
         <th>Value</th>
-        <th>Monthly frequency</th>
         <th>Memo</th>
+        <th>Monthly frequency</th>
         <th class="btn-group-column"></th>
       </tr>
 
     <% @deductions.each do |deduction| %>
       <tr>
         <td><%= deduction.value %></td>
-        <td><%= deduction.monthly_frequency %></td>
         <td><%= deduction.memo %></td>
+        <td><%= deduction.monthly_frequency %></td>
         <td class="btn-group-column">
           <div class="btn-group">
             <%= link_to 'Show', deduction, {class: "btn btn-default"} %>
