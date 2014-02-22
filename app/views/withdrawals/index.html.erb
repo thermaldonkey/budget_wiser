@@ -1,27 +1,33 @@
-<h1>Listing withdrawals</h1>
+<div id="withdrawals_index" class="jumbotron">
+  <h1>Current pay period withdrawals</h1>
 
-<table>
-  <tr>
-    <th>Value</th>
-    <th>Memo</th>
-    <th>Date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <th>Value</th>
+        <th>Memo</th>
+        <th>Date</th>
+        <th class="btn-group-column"></th>
+      </tr>
 
-<% @withdrawals.each do |withdrawal| %>
-  <tr>
-    <td><%= withdrawal.value %></td>
-    <td><%= withdrawal.memo %></td>
-    <td><%= withdrawal.created_at %></td>
-    <td><%= link_to 'Show', withdrawal %></td>
-    <td><%= link_to 'Edit', edit_withdrawal_path(withdrawal) %></td>
-    <td><%= link_to 'Destroy', withdrawal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <% @withdrawals.each do |withdrawal| %>
+      <tr>
+        <td><%= withdrawal.value %></td>
+        <td><%= withdrawal.memo %></td>
+        <td><%= withdrawal.created_at.strftime("%m/%d %T") %></td>
+        <td class="btn-group-column">
+          <div class="btn-group">
+          <%= link_to 'Show', withdrawal, {class: "btn btn-default"} %>
+          <%= link_to 'Edit', edit_withdrawal_path(withdrawal), {class: "btn btn-info"} %>
+          <%= link_to 'Destroy', withdrawal, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"} %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
 
-<br />
+  <br />
 
-<%= link_to 'New Withdrawal', new_withdrawal_path %>
+  <%= render partial: "withdrawals/form" %>
+</div>

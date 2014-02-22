@@ -5,3 +5,14 @@
 .new_withdrawal .field {
   width: 95%;
 }
+
+@media (min-width: 992px) {
+  #withdrawals_index {
+    margin: auto;
+    width: 60rem;
+  }
+}
+
+#withdrawals_index .btn-group-column {
+  min-width: 250px;
+}

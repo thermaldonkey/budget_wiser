@@ -2,11 +2,20 @@ class WithdrawalsController < ApplicationController
   # GET /withdrawals
   # GET /withdrawals.json
   def index
-    @withdrawals = current_user.pay_periods.last.withdrawals.order('created_at DESC')
+    pay_period = current_user.current_pay_period
+    if pay_period
+      @withdrawals = pay_period.withdrawals.order('created_at DESC')
+      @withdrawal = Withdrawal.new(pay_period_id: pay_period.id)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @withdrawals }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @withdrawals }
+      end
+    else
+      respond_to do |format|
+        format.html { render "pay_periods/missing" }
+        format.html { render text: "Missing pay period" }
+      end
     end
   end
 
