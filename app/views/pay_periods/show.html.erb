@@ -1,6 +1,6 @@
 <div id="pay_period_show" class="jumbotron">
   <p id="notice"><%= notice %></p>
-  <input id="pay_period_net_income" type="hidden" value=<%= @pay_period.net_income %> />
+  <input id="pay_period_allowance" type="hidden" value=<%= @pay_period.net_income * @pay_period.user.allowance %> />
 
   <p>
     <b>End date:</b>

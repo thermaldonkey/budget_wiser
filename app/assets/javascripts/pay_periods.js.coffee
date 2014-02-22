@@ -4,10 +4,10 @@
 
 $(document).ready ->
   widthOfProgressDiv = document.getElementById("progress").offsetWidth
-  netIncome = document.getElementById("pay_period_net_income").value
+  allowance = document.getElementById("pay_period_allowance").value
   balanceString = document.getElementById("pay_period_balance").innerText
   balance = parseFloat(balanceString.split(" ")[1])
-  percentageSpent = 1 - (balance / netIncome)
+  percentageSpent = 1 - (balance / allowance)
   progressBar = document.getElementById("balance_progress")
   percentProgressed = (Math.floor(percentageSpent * 100) + "%")
   progressBar.style.width = percentProgressed
