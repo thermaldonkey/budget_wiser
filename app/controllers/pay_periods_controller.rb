@@ -25,8 +25,7 @@ class PayPeriodsController < ApplicationController
   # GET /pay_periods/current
   # GET /pay_periods/current.json
   def current
-    @pay_period = current_user.pay_periods
-      .where("start_date <= '#{Date.today}' and end_date >= '#{Date.today}'").last
+    @pay_period = current_user.current_pay_period
     if @pay_period
       @withdrawal = Withdrawal.new(pay_period_id: @pay_period.id)
 
