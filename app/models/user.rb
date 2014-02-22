@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   has_many :deductions
   has_many :notifications
 
+  def current_pay_period
+    pay_periods.where("start_date <= '#{Date.today}' and end_date >= '#{Date.today}'").last
+  end
+
   private
 
     def presence_of_pay_days
