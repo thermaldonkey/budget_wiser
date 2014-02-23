@@ -2,7 +2,7 @@ BetaBudget::Application.routes.draw do
   resources :notifications
 
 
-  resources :deductions
+  resources :deductions, except: [:show]
 
 
   resources :withdrawals

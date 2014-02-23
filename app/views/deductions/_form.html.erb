@@ -18,6 +18,7 @@
       <%= f.text_field :value, {class: "form-control", placeholder: "0.00"} %>
     </div>
   </div>
+
   <div class="field">
     <%= f.label :monthly_frequency %><br />
     <div class="input-group input-group-sm">
@@ -25,6 +26,7 @@
       <%= f.number_field :monthly_frequency, {class: "form-control"} %>
     </div>
   </div>
+
   <div class="field">
     <%= f.label :memo %><br />
     <div class="input-group input-group-sm">
@@ -32,9 +34,11 @@
       <%= f.text_field :memo, {class: "form-control", placeholder: "Pay them bills..."} %>
     </div>
   </div>
+
   <div>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
+
   <div class="actions">
     <%= f.submit class: "btn btn-primary" %>
   </div>

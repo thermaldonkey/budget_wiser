@@ -2,8 +2,9 @@ class DeductionsController < ApplicationController
   # GET /deductions
   # GET /deductions.json
   def index
-    @deductions = current_user.deductions
-    @deduction = Deduction.new(user_id: current_user.id)
+    @user = current_user
+    @deductions = @user.deductions
+    @deduction = Deduction.new(user_id: @user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,7 +46,7 @@ class DeductionsController < ApplicationController
 
     respond_to do |format|
       if @deduction.save
-        format.html { redirect_to @deduction, notice: 'Deduction was successfully created.' }
+        format.html { redirect_to action: :index, notice: 'Deduction was successfully created.' }
         format.json { render json: @deduction, status: :created, location: @deduction }
       else
         format.html { render action: "new" }
@@ -61,7 +62,7 @@ class DeductionsController < ApplicationController
 
     respond_to do |format|
       if @deduction.update_attributes(params[:deduction])
-        format.html { redirect_to @deduction, notice: 'Deduction was successfully updated.' }
+        format.html { redirect_to action: :index, notice: 'Deduction was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

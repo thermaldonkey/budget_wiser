@@ -6,9 +6,54 @@
   #deductions_index {
     margin: auto;
     width: 60rem;
+
+    h1 {
+      font-size: 45px;
+    }
+  }
+
+  #new_deduction {
+    margin: auto;
+    width: 60rem;
+
+    .input-group {
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 45px;
+    }
+  }
+
+  #edit_deduction {
+    margin: auto;
+    width: 60rem;
+
+    h1 {
+      font-size: 45px;
+    }
   }
 }
 
-#deductions_index .btn-group-column {
-  min-width: 250px;
+#deductions_index {
+  .btn-group-column {
+    min-width: 250px;
+  }
+
+  h1 {
+    font-size: 27px;
+  }
 }
+
+#edit_deduction {
+  h1 {
+    font-size: 27px;
+  }
+}
+
+#new_deduction {
+  h1 {
+    font-size: 27px;
+  }
+}
+

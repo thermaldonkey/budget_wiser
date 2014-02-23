@@ -38,10 +38,11 @@ describe DeductionsController do
   end
 
   describe "GET show" do
-    it "assigns the requested deduction as @deduction" do
+    it "should not respond" do
       deduction = Deduction.create! valid_attributes
-      get :show, {:id => deduction.to_param}
-      assigns(:deduction).should eq(deduction)
+      expect{
+        get :show, {:id => deduction.to_param}
+      }.to raise_error(ActionController::RoutingError)
     end
   end
 
@@ -74,9 +75,9 @@ describe DeductionsController do
         assigns(:deduction).should be_persisted
       end
 
-      it "redirects to the created deduction" do
+      it "redirects to the deductions index" do
         post :create, {:deduction => valid_attributes}
-        response.should redirect_to(Deduction.last)
+        response.should redirect_to(action: :index, notice: "Deduction was successfully created.")
       end
     end
 
@@ -118,7 +119,7 @@ describe DeductionsController do
       it "redirects to the deduction" do
         deduction = Deduction.create! valid_attributes
         put :update, {:id => deduction.to_param, :deduction => valid_attributes}
-        response.should redirect_to(deduction)
+        response.should redirect_to(action: :index, notice: "Deduction was successfully updated.")
       end
     end
 
