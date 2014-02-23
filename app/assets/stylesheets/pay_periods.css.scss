@@ -7,6 +7,19 @@
     margin: auto;
     width: 40rem;
   }
+
+  #missing_pay_period {
+    margin: auto;
+    width: 50rem;
+
+    h1 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  }
 }
 
 #progress {
@@ -15,4 +28,20 @@
 
 #balance_progress {
   color: #000;
+}
+
+#missing_pay_period {
+  h1 {
+    font-size: 26px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+}
+
+.datepicker_input {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: inline-block;
 }

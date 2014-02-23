@@ -1,7 +1,7 @@
-<h1>Missing pay period for this week!</h1>
+<div id="missing_pay_period" class="jumbotron">
+  <h1>Missing pay period!</h1>
 
-<p>
-  You don't have a pay period set up yet, so go make one!
-</p>
+  <p>Let's whip one up for you!</p>
 
-<%= link_to 'New Pay period', new_pay_period_path %>
+  <%= render partial: "pay_periods/form" %>
+</div>

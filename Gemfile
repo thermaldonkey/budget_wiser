@@ -12,6 +12,9 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sass-rails', '>= 3.2'
 gem 'therubyracer', :platforms => :ruby
+#gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

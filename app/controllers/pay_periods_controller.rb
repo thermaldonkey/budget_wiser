@@ -34,6 +34,7 @@ class PayPeriodsController < ApplicationController
         format.json { render json: @pay_period }
       end
     else
+      @pay_period = PayPeriod.new(user_id: current_user.id)
       respond_to do |format|
         format.html { render :missing }
         format.json { render text: "Missing pay period" }

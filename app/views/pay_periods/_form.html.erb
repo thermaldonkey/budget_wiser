@@ -13,20 +13,25 @@
 
   <div class="field">
     <%= f.label :gross_income %><br />
-    <%= f.text_field :gross_income %>
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :gross_income, {class: "form-control", placeholder: "0.00"} %>
+    </div>
   </div>
   <div class="field">
     <%= f.label :start_date %><br />
-    <%= f.date_select :start_date %>
+    <input type="hidden" id="pay_period_start_date" name="pay_period[start_date]">
+    <div id="start_date_picker" class="datepicker_input"></div>
   </div>
   <div class="field">
     <%= f.label :end_date %><br />
-    <%= f.date_select :end_date %>
+    <input type="hidden" id="pay_period_end_date" name="pay_period[end_date]">
+    <div id="end_date_picker" class="datepicker_input"></div>
   </div>
   <div>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
