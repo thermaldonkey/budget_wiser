@@ -17,7 +17,7 @@
         <td><%= withdrawal.created_at.strftime("%m/%d %T") %></td>
         <td class="btn-group-column">
           <div class="btn-group">
-          <%= link_to 'Show', withdrawal, {class: "btn btn-default"} %>
+          <%= link_to 'Show', withdrawal, {class: "btn btn-info"} %>
           <%= link_to 'Edit', edit_withdrawal_path(withdrawal), {class: "btn btn-info"} %>
           <%= link_to 'Destroy', withdrawal, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"} %>
           </div>
