@@ -31,19 +31,31 @@ describe WithdrawalsController do
   before { sign_in user }
 
   describe "GET index" do
-    it "assigns all withdrawals as @withdrawals" do
-      pay_period = create(:pay_period, user: user)
-      withdrawal = create(:withdrawal, pay_period: pay_period)
-      get :index, {}
-      assigns(:withdrawals).should eq([withdrawal])
+    context "when the current user has a current pay period" do
+      it "assigns all withdrawals as @withdrawals" do
+        pay_period = create(:pay_period, user: user, start_date: Date.today, end_date: Date.today + 2)
+        withdrawal = create(:withdrawal, pay_period: pay_period)
+        get :index, {}
+        assigns(:withdrawals).should eq([withdrawal])
+      end
+    end
+
+    context "when the current user doesn't have a current pay period" do
+      it "renders the pay_periods#missing template" do
+        pay_period = create(:pay_period, user: user, start_date: Date.today - 4, end_date: Date.today - 2)
+        withdrawal = create(:withdrawal, pay_period: pay_period)
+        get :index, {}
+        response.should render_template("pay_periods/missing")
+      end
     end
   end
 
   describe "GET show" do
-    it "assigns the requested withdrawal as @withdrawal" do
+    it "should not respond" do
       withdrawal = Withdrawal.create! valid_attributes
-      get :show, {:id => withdrawal.to_param}
-      assigns(:withdrawal).should eq(withdrawal)
+      expect{
+        get :show, {:id => withdrawal.to_param}
+      }.to raise_error(ActionController::RoutingError)
     end
   end
 
@@ -83,6 +95,8 @@ describe WithdrawalsController do
     end
 
     describe "with invalid params" do
+      let!(:pay_period) { create(:pay_period, user: user, start_date: Date.today, end_date: Date.today + 2) }
+
       it "assigns a newly created but unsaved withdrawal as @withdrawal" do
         # Trigger the behavior that occurs when invalid params are submitted
         Withdrawal.any_instance.stub(:save).and_return(false)
@@ -117,10 +131,10 @@ describe WithdrawalsController do
         assigns(:withdrawal).should eq(withdrawal)
       end
 
-      it "redirects to the withdrawal" do
+      it "redirects to the withdrawals index" do
         withdrawal = Withdrawal.create! valid_attributes
         put :update, {:id => withdrawal.to_param, :withdrawal => valid_attributes}
-        response.should redirect_to(withdrawal)
+        response.should redirect_to(action: :index, notice: 'Withdrawal was successfully updated.')
       end
     end
 

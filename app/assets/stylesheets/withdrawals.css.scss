@@ -2,17 +2,61 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.new_withdrawal .field {
-  width: 95%;
-}
-
 @media (min-width: 992px) {
   #withdrawals_index {
     margin: auto;
     width: 60rem;
   }
+
+  body #withdrawals_index h1 {
+    font-size: 45px;
+  }
+
+  #edit_withdrawal {
+    margin: auto;
+    width: 60rem;
+  }
+
+  body #edit_withdrawal h1 {
+    font-size: 45px;
+  }
+
+  #new_withdrawal {
+    margin: auto;
+    width: 60rem;
+    
+    .input-group {
+      width: 90%;
+    }
+  }
+
+  body #new_withdrawal h1 {
+    font-size: 45px;
+  }
+
+  #pay_period_show .new_withdrawal .input-group {
+    width: 55%;
+  }
 }
 
-#withdrawals_index .btn-group-column {
-  min-width: 250px;
+#withdrawals_index {
+  .btn-group-column {
+    min-width: 149px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+}
+
+#edit_withdrawal {
+  h1 {
+    font-size: 27px;
+  }
+}
+
+#new_withdrawal {
+  h1 {
+    font-size: 27px;
+  }
 }

@@ -5,7 +5,7 @@ BetaBudget::Application.routes.draw do
   resources :deductions, except: [:show]
 
 
-  resources :withdrawals
+  resources :withdrawals, except: [:show]
 
 
   resources :pay_periods

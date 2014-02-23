@@ -49,6 +49,8 @@ class WithdrawalsController < ApplicationController
   # POST /withdrawals
   # POST /withdrawals.json
   def create
+    pay_period_id = params[:withdrawal].delete(:pay_period_id)
+    params[:withdrawal][:pay_period_id] = pay_period_id || current_user.current_pay_period.id
     @withdrawal = Withdrawal.new(params[:withdrawal])
 
     respond_to do |format|
@@ -69,7 +71,7 @@ class WithdrawalsController < ApplicationController
 
     respond_to do |format|
       if @withdrawal.update_attributes(params[:withdrawal])
-        format.html { redirect_to @withdrawal, notice: 'Withdrawal was successfully updated.' }
+        format.html { redirect_to action: :index, notice: 'Withdrawal was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
