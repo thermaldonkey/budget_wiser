@@ -13,12 +13,21 @@
     width: 50rem;
   }
 
+  #pay_periods_index {
+    margin: auto;
+    width: 80rem;
+  }
+
   body #missing_pay_period h1 {
     font-size: 40px;
   }
 
   body #missing_pay_period p {
     font-size: 18px;
+  }
+
+  body #pay_periods_index h1 {
+    font-size: 40px;
   }
 }
 
@@ -44,4 +53,14 @@
   border: 1px solid black;
   border-radius: 5px;
   display: inline-block;
+}
+
+#pay_periods_index {
+  .btn-group-column {
+    min-width: 213px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
 }

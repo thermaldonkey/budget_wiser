@@ -1,31 +1,35 @@
-<h1>Listing pay_periods</h1>
+<div id="pay_periods_index" class="jumbotron">
+  <h1><%= "#{@user.name}'s Pay Periods" %></h1>
 
-<table>
-  <tr>
-    <th>Gross income</th>
-    <th>Net income</th>
-    <th>Savings</th>
-    <th>Start date</th>
-    <th>End date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <th>Gross income</th>
+        <th>Net income</th>
+        <th>Savings</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th class="btn-group-column"></th>
+      </tr>
 
-<% @pay_periods.each do |pay_period| %>
-  <tr>
-    <td><%= pay_period.gross_income %></td>
-    <td><%= pay_period.net_income %></td>
-    <td><%= pay_period.savings %></td>
-    <td><%= pay_period.start_date %></td>
-    <td><%= pay_period.end_date %></td>
-    <td><%= link_to 'Show', pay_period %></td>
-    <td><%= link_to 'Edit', edit_pay_period_path(pay_period) %></td>
-    <td><%= link_to 'Destroy', pay_period, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <% @pay_periods.each do |pay_period| %>
+      <tr>
+        <td><%= pay_period.gross_income %></td>
+        <td><%= pay_period.net_income %></td>
+        <td><%= pay_period.savings %></td>
+        <td><%= pay_period.start_date %></td>
+        <td><%= pay_period.end_date %></td>
+        <td class="btn-group">
+          <%= link_to 'Show', pay_period, class: "btn btn-info" %>
+          <%= link_to 'Edit', edit_pay_period_path(pay_period), class: "btn btn-info" %>
+          <%= link_to 'Destroy', pay_period, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
 
-<br />
+  <br />
 
-<%= link_to 'New Pay period', new_pay_period_path %>
+  <%= link_to 'New Pay period', new_pay_period_path, class: "btn btn-primary" %>
+</div>
