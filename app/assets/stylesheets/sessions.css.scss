@@ -1,9 +1,15 @@
-#new_session {
-  @media (min-width: 992px) {
+@media (min-width: 992px) {
+  #new_session {
     margin: auto;
     width: 40rem;
   }
 
+  body #new_session h1 {
+    font-size: 45px;
+  }
+}
+
+#new_session {
   .btn {
     margin-top: 5px;
     margin-bottom: 5px;
