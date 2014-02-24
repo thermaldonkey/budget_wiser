@@ -6,10 +6,10 @@
   #deductions_index {
     margin: auto;
     width: 60rem;
+  }
 
-    h1 {
-      font-size: 45px;
-    }
+  body #deductions_index h1 {
+    font-size: 45px;
   }
 
   #new_deduction {
@@ -19,19 +19,19 @@
     .input-group {
       width: 90%;
     }
+  }
 
-    h1 {
-      font-size: 45px;
-    }
+  body #new_deduction h1 {
+    font-size: 45px;
   }
 
   #edit_deduction {
     margin: auto;
     width: 60rem;
+  }
 
-    h1 {
-      font-size: 45px;
-    }
+  body #edit_deduction h1 {
+    font-size: 45px;
   }
 }
 
