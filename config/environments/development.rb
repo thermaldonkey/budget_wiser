@@ -1,3 +1,5 @@
+require File.join( Rails.root, 'config', 'initializers', 'email' )
+
 BetaBudget::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -15,6 +17,18 @@ BetaBudget::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true,
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    authentication: 'plain',
+    user_name: Email::USER,
+    password: Email::PASS
+  }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

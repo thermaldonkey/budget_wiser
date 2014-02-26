@@ -1,3 +1,5 @@
+require File.join( Rails.root, 'config', 'initializers', 'email' )
+
 BetaBudget::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -50,6 +52,18 @@ BetaBudget::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.default_url_options = { host: 'gentle-wave-6962.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true,
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    authentication: 'plain',
+    user_name: Email::USER,
+    password: Email::PASS
+  }
 
   # Enable threaded mode
   # config.threadsafe!
