@@ -18,6 +18,15 @@
     width: 80rem;
   }
 
+  #new_pay_period {
+    margin: auto;
+    width: 60rem;
+
+    .input-group {
+      width: 90%;
+    }
+  }
+
   body #missing_pay_period h1 {
     font-size: 40px;
   }
@@ -27,6 +36,10 @@
   }
 
   body #pay_periods_index h1 {
+    font-size: 40px;
+  }
+
+  body #new_pay_period h1 {
     font-size: 40px;
   }
 }
@@ -60,6 +73,12 @@
     min-width: 213px;
   }
 
+  h1 {
+    font-size: 26px;
+  }
+}
+
+#new_pay_period {
   h1 {
     font-size: 26px;
   }
