@@ -27,6 +27,11 @@
     }
   }
 
+  #edit_pay_period {
+    margin: auto;
+    width: 60rem;
+  }
+
   body #missing_pay_period h1 {
     font-size: 40px;
   }
@@ -40,6 +45,10 @@
   }
 
   body #new_pay_period h1 {
+    font-size: 40px;
+  }
+
+  body #edit_pay_period h1 {
     font-size: 40px;
   }
 }
@@ -79,6 +88,12 @@
 }
 
 #new_pay_period {
+  h1 {
+    font-size: 26px;
+  }
+}
+
+#edit_pay_period {
   h1 {
     font-size: 26px;
   }

@@ -1,6 +1,10 @@
-<h1>Editing pay_period</h1>
+<div id="edit_pay_period" class="jumbotron">
+  <h1>Editing Pay period</h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Show', @pay_period %> |
-<%= link_to 'Back', pay_periods_path %>
+  <div class="btn-group">
+    <%= link_to 'Show', @pay_period, class: "btn btn-info" %>
+    <%= link_to 'Back', pay_periods_path, class: "btn btn-info" %>
+  </div>
+</div>
