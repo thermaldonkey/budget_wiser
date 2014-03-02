@@ -74,9 +74,9 @@ describe PayPeriodsController do
     describe "when no current pay_period exists" do
       let!(:pay_period) { create(:pay_period, user: user) }
 
-      it "assigns @pay_period to nil" do
+      it "assigns @pay_period to a new PayPeriod" do
         subject
-        assigns(:pay_period).should be_nil
+        assigns(:pay_period).should be_a_new(PayPeriod)
       end
 
       it "renders the 'missing' template" do

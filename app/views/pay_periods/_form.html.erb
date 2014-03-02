@@ -1,4 +1,6 @@
 <%= form_for(@pay_period) do |f| %>
+  <% start_date_formatted = @pay_period.start_date.nil? ? "" : @pay_period.start_date.strftime("%m-%d-%Y") %>
+  <% end_date_formatted = @pay_period.end_date.nil? ? "" : @pay_period.end_date.strftime("%m-%d-%Y") %>
   <% if @pay_period.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@pay_period.errors.count, "error") %> prohibited this pay_period from being saved:</h2>
@@ -20,13 +22,13 @@
   </div>
   <div class="field">
     <%= f.label :start_date %><br />
-    <input type="hidden" id="pay_period_start_date" name="pay_period[start_date]">
-    <div id="start_date_picker" class="datepicker_input"></div>
+    <%= content_tag(:input, "", type: "hidden", id: "pay_period_start_date", name: "pay_period[start_date]", value: @pay_period.start_date) %>
+    <%= content_tag(:div, "", id: "start_date_picker", class: "datepicker_input", data: {date: "#{start_date_formatted}"}) %>
   </div>
   <div class="field">
     <%= f.label :end_date %><br />
-    <input type="hidden" id="pay_period_end_date" name="pay_period[end_date]">
-    <div id="end_date_picker" class="datepicker_input"></div>
+    <%= content_tag(:input, "", type: "hidden", id: "pay_period_end_date", name: "pay_period[end_date]", value: @pay_period.end_date) %>
+    <%= content_tag(:div, "", id: "end_date_picker", class: "datepicker_input", data: {date: "#{end_date_formatted}"}) %>
   </div>
   <div>
     <%= f.hidden_field :user_id, value: current_user.id %>

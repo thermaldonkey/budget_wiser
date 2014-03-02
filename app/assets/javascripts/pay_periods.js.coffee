@@ -5,7 +5,7 @@
 $(document).ready ->
 
   $("#start_date_picker").datepicker(
-    todayHighlight: true
+    todayHighlight: true,
   ).on('changeDate', (e) ->
     $("#pay_period_start_date").val(e.format('yyyy-mm-dd'))
   )
